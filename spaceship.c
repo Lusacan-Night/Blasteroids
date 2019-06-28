@@ -5,8 +5,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include "blasteroids.h"
-#include "asteroid.h"
-#include "spaceship.h"
 
 // Spaceship lives
 void InitShipLives(Spaceship ships[], int lives)
@@ -58,4 +56,29 @@ void draw_Ship(Spaceship *s) {
     al_draw_line(6, 4, 1, 4, al_map_rgb(0, 255, 0), 3.0f);
     al_identity_transform(&transform);
     al_use_transform(&transform);
+}
+
+void CollideSpaceship(Asteroid asteroids[], int aSize, Spaceship *s, Spaceship ships[], int lives)
+{
+    for (int i = 0; i < lives; i++)
+    {
+        if(ships[i].show)
+        {
+            for (int j = 0; j < aSize; j++)
+            {
+                if (asteroids[j].show)
+                {
+                    if(asteroids[j].sx - asteroids[j].boundx < s->sx + s->boundx &&
+                        asteroids[j].sx + asteroids[j].boundx > s->sx - s->boundx &&
+                        asteroids[j].sy - asteroids[j].boundy < s->sy + s->boundy &&
+                        asteroids[j].sy + asteroids[j].boundy > s->sy - s->boundy)
+                    {
+                        asteroids[j].show = false;
+                        ships[i].show = false;
+                        s->lives--;
+                    } 
+                }
+            }
+        }
+    }
 }

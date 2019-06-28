@@ -1,7 +1,3 @@
-/* 
- * Ядро игрульки
-*/
-
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
@@ -13,7 +9,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "blasteroids.h"
-#include "blast.h"
+
 
 void must_init(bool test, const char *description)
 {
@@ -93,7 +89,7 @@ int main()
     {
         al_wait_for_event(queue, &event);
         float heading_degrees = DEGREES(DEGREES(vectorize.heading));
-        //float bullet_heading_degrees = DEGREES(DEGREES(bullet.heading));
+        
         switch(event.type)
         {
             case ALLEGRO_EVENT_TIMER:
@@ -117,6 +113,7 @@ int main()
                     FireBullets(bullets, NUM_BULLETS, vectorize);
                 }
 
+                
                 if (!isGameOver)
                 {
                     
@@ -166,9 +163,7 @@ int main()
                 break;
         }
 
-        // if(done)
-        //     break;
-
+        
         if(redraw && al_is_event_queue_empty(queue))
         {
             al_draw_textf(font, al_map_rgb(255, 255, 255), 0, 0, 0, "X: %d", cometa[0].show);

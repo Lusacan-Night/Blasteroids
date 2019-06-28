@@ -7,7 +7,8 @@
 #include <allegro5/allegro5.h>
 #include <math.h>
 #include <stdlib.h>
-#include "blast.h"
+#include "blasteroids.h"
+
 
 void InitBullets(Blast bullets[], int size) {
     for (int i = 0; i < size; i++) {
@@ -99,27 +100,3 @@ int CollideBullets(Blast bullets[], int bSize, Asteroid asteroids[], int aSize, 
     }
 }
 
-void CollideSpaceship(Asteroid asteroids[], int aSize, Spaceship *s, Spaceship ships[], int lives)
-{
-    for (int i = 0; i < lives; i++)
-    {
-        if(ships[i].show)
-        {
-            for (int j = 0; j < aSize; j++)
-            {
-                if (asteroids[j].show)
-                {
-                    if(asteroids[j].sx - asteroids[j].boundx < s->sx + s->boundx &&
-                        asteroids[j].sx + asteroids[j].boundx > s->sx - s->boundx &&
-                        asteroids[j].sy - asteroids[j].boundy < s->sy + s->boundy &&
-                        asteroids[j].sy + asteroids[j].boundy > s->sy - s->boundy)
-                    {
-                        asteroids[j].show = false;
-                        ships[i].show = false;
-                        s->lives--;
-                    } 
-                }
-            }
-        }
-    }
-}

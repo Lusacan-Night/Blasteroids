@@ -5,7 +5,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include "blasteroids.h"
-#include "asteroid.h"
 
 
 void Init_Asteroids(Asteroid asteroids[], int size) 
