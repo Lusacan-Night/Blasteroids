@@ -1,4 +1,4 @@
 /.vscode
 *.[oa]
-/.reserve
-/.launch
+/reserve
+/launch
